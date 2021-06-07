@@ -7,14 +7,14 @@ using Proyecto1.Models;
 
 namespace Proyecto1.Controllers
 {
-    public class ProveedorController : Controller
+    public class ClienteController : Controller
     {
-        // GET: Proveedor
+        // GET: Cliente
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.proveedor.ToList());
+                return View(db.cliente.ToList());
             }
         }
 
@@ -27,7 +27,7 @@ namespace Proyecto1.Controllers
         //Crear info
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(proveedor proveedor)
+        public ActionResult Create(cliente cliente)
         {
             if (!ModelState.IsValid)
                 return View();
@@ -35,7 +35,7 @@ namespace Proyecto1.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    db.proveedor.Add(proveedor);
+                    db.cliente.Add(cliente);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -53,33 +53,33 @@ namespace Proyecto1.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    proveedor findProveedor = db.proveedor.Where(a => a.id == id).FirstOrDefault();
-                    return View(findProveedor);
+                    cliente findCliente = db.cliente.Where(a => a.id == id).FirstOrDefault();
+                    return View(findCliente);
                 }
-            }catch(Exception ex)
+            }catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
             }
         }
+
         //Editar info
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(proveedor proveedorEdit)
+        public ActionResult Edit(cliente clienteEdit)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    proveedor Provee = db.proveedor.Find(proveedorEdit.id);
-                    Provee.nombre = proveedorEdit.nombre;
-                    Provee.direccion = proveedorEdit.direccion;
-                    Provee.telefono = proveedorEdit.telefono;
-                    Provee.nombre_contacto = proveedorEdit.nombre_contacto;
+                    cliente clien = db.cliente.Find(clienteEdit.id);
+                    clien.nombre = clienteEdit.nombre;
+                    clien.documento = clienteEdit.documento;
+                    clien.email = clienteEdit.email;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -91,18 +91,18 @@ namespace Proyecto1.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                proveedor Provee = db.proveedor.Find(id);
-                return View(Provee);
+                cliente clien = db.cliente.Find(id);
+                return View(clien);
             }
         }
 
         //Delete
-        public ActionResult Delete(int id)
+        public ActionResult Delete (int id)
         {
             using (var db = new inventario2021Entities())
             {
-                var Provee = db.proveedor.Find(id);
-                db.proveedor.Remove(Provee);
+                var clien = db.cliente.Find(id);
+                db.cliente.Remove(clien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
