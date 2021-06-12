@@ -4,27 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Todos los usuarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear usuario nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellido)
+            Apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_nacimiento)
+            Fecha Nacimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
+            Correo electrónico
         </th>
         <th></th>
     </tr>
@@ -44,14 +41,21 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Ver", "Details", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "linkDelete" })
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts{
+    <script>
+        $(".linkDelete").click(function (event){
+            if (!confirm('¿Esta seguro de eliminar?')) {
+                event.preventDefault();
+            }
+        })
+    </script>
+    }

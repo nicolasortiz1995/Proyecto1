@@ -17,7 +17,7 @@ namespace Proyecto1.Controllers
                 return View(db.roles.ToList());
             }
         }
-
+        
         //Crear-Mostrar info
         public ActionResult Create()
         {
