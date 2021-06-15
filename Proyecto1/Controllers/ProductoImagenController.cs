@@ -7,35 +7,34 @@ using Proyecto1.Models;
 
 namespace Proyecto1.Controllers
 {
-    public class ProductoController : Controller
+    public class ProductoImagenController : Controller
     {
-        // GET: Producto
+        // GET: ProductoImagen
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.producto.ToList());
-            }            
-        }
-
-
-        public static string NombreProveedor(int idProveedor)
-        {
-            using (var db = new inventario2021Entities())
-            {
-                return db.proveedor.Find(idProveedor).nombre;
+                return View(db.producto_imagen.ToList());
             }
         }
 
-        //Mostrar listar proveedores
-        public ActionResult ListarProveedores()
+
+        public static string NProducto(int idNProducto)
         {
             using (var db = new inventario2021Entities())
             {
-                return PartialView(db.proveedor.ToList());
+                return db.producto.Find(idNProducto).nombre;
             }
         }
 
+        //Mostrar listar Producto
+        public ActionResult ListarNProducto()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.producto.ToList());
+            }
+        }
         //Create-Show
         public ActionResult Create()
         {
@@ -45,19 +44,21 @@ namespace Proyecto1.Controllers
         //Create-Receive
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(producto newProducto)
+        public ActionResult Create(producto_imagen newProductoImagen)
         {
             if (!ModelState.IsValid)
                 return View();
+
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    db.producto.Add(newProducto);
+                    db.producto_imagen.Add(newProductoImagen);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -69,47 +70,46 @@ namespace Proyecto1.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                producto productoDetalle = db.producto.Where(a => a.id == id).FirstOrDefault();
-                return View(productoDetalle);
+                producto_imagen productoImagenDetalle = db.producto_imagen.Where(a => a.id == id).FirstOrDefault();
+                return View(productoImagenDetalle);
             }
         }
-        
-        //Edit-Show
-        public ActionResult Edit (int id)
+
+        //Editar-Show
+        public ActionResult Edit(int id)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    producto producto = db.producto.Where(a => a.id == id).FirstOrDefault();
-                    return View(producto);
+                    producto_imagen productoImagen = db.producto_imagen.Where(a => a.id == id).FirstOrDefault();
+                    return View(productoImagen);
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Erorr " + ex);
+                ModelState.AddModelError("", "Error " + ex);
                 return View();
             }
         }
 
-        //Edit-Receive
+        //Editar-Receive
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit (producto productoEdit)
+        public ActionResult Edit(producto_imagen productoImagenEdit)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    var producto = db.producto.Find(productoEdit.id);
-                    producto.nombre = productoEdit.nombre;
-                    producto.percio_unitario = productoEdit.percio_unitario;
-                    producto.cantidad = productoEdit.cantidad;
-                    producto.descripcion = productoEdit.descripcion;
-                    producto.id_proveedor = productoEdit.id_proveedor;
+                    var productoImagen = db.producto_imagen.Find(productoImagenEdit.id);
+                    productoImagen.imagen = productoImagenEdit.imagen;
+                    productoImagen.id_producto = productoImagenEdit.id_producto;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -121,12 +121,13 @@ namespace Proyecto1.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                var productDelete = db.producto.Find(id);
-                db.producto.Remove(productDelete);
+                var productoImagenDelete = db.producto_imagen.Find(id);
+                db.producto_imagen.Remove(productoImagenDelete);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
+        
 
     }
 }
