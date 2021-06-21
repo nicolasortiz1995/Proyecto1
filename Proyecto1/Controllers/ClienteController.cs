@@ -97,12 +97,12 @@ namespace Proyecto1.Controllers
         }
 
         //Delete
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             using (var db = new inventario2021Entities())
             {
-                var clien = db.cliente.Find(id);
-                db.cliente.Remove(clien);
+                var Clien = db.cliente.Find(id);
+                db.cliente.Remove(Clien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

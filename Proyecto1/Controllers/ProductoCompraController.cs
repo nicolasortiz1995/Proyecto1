@@ -22,7 +22,7 @@ namespace Proyecto1.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                return db.compra.Find(idCompra).id_cliente;
+                return db.compra.Find(idCompra).id;
             }
         }
 

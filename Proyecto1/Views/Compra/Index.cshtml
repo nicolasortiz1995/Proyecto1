@@ -4,48 +4,61 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listado compra</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear compra", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha)
+            Fecha
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.total)
+            Total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.id_usuario)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.id_cliente)
+            Cliente
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_cliente)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.id_usuario)*@
+                @Proyecto1.Controllers.CompraController.NombreUsuario(item.id_usuario)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.id_cliente)*@
+                @Proyecto1.Controllers.CompraController.NombreCliente(item.id_cliente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Ver", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "linkDelete" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section scripts{
+    <script>
+        $(".linkDelete").click(function (event) {
+            if (!confirm('¿Esta seguro de eliminar?')) {
+                event.preventDefault();
+            }
+        })
+    </script>
+}

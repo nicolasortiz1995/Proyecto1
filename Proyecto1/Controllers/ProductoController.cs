@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Proyecto1.Models;
+using Rotativa;
 
 namespace Proyecto1.Controllers
 {

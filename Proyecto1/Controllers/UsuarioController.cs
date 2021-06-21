@@ -117,18 +117,6 @@ namespace Proyecto1.Controllers
             }
         }
 
-        //Delete
-        public ActionResult Delete(int id)
-        {
-            using (var db = new inventario2021Entities())
-            {
-                var usuario = db.usuario.Find(id);
-                db.usuario.Remove(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-        }
-
         //Login-Show
         public ActionResult Login(string message = "")
         {
@@ -164,6 +152,18 @@ namespace Proyecto1.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index","Home");
+        }
+
+        //Delete
+        public ActionResult Delete(int id)
+        {
+            using (var db = new inventario2021Entities())
+            {
+                var usuario = db.usuario.Find(id);
+                db.usuario.Remove(usuario);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
 }

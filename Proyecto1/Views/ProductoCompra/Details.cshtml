@@ -2,32 +2,34 @@
 
 @{
     ViewBag.Title = "Details";
+    var idProductoCompra = Model.id_compra;
 }
 
-<h2>Details</h2>
+<h2>Detalles Producto Compra: @idProductoCompra</h2>
 
 <div>
-    <h4>producto_compra</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_compra)
+            Compra
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_compra)
+            @*@Html.DisplayFor(model => model.id_compra)*@
+            @Proyecto1.Controllers.ProductoCompraController.NombreCompra(Model.id_compra)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.id_producto)
+            Producto
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_producto)
+            @*@Html.DisplayFor(model => model.id_producto)*@
+            @Proyecto1.Controllers.ProductoCompraController.NombreProducto(Model.id_producto)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cantidad)
+            Cantidad
         </dt>
 
         <dd>
@@ -37,6 +39,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar producto compra " + idProductoCompra, "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>
