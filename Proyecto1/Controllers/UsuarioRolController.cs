@@ -77,7 +77,7 @@ namespace Proyecto1.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "error" + ex);
+                ModelState.AddModelError("", "Error" + ex);
                 return View();
             }
         }

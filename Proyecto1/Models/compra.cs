@@ -20,6 +20,7 @@ namespace Proyecto1.Models
             this.producto_compra = new HashSet<producto_compra>();
         }
     
+
         public int id { get; set; }
         public System.DateTime fecha { get; set; }
         public int total { get; set; }

@@ -11,6 +11,7 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations
     
     public partial class cliente
     {
@@ -21,8 +22,15 @@ namespace Proyecto1.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El nombre no puede ir vacio.")]
+        [StringLength(30, ErrorMessage = "Se superó el límite de caracteres.")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "El documento no puede ir vacio.")]
         public string documento { get; set; }
+
+        [EmailAddress(ErrorMessage = "El dato ingresado no corresponde a una dirección de correo electrónico.")]
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

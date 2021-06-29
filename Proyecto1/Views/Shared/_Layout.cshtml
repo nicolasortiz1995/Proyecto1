@@ -1,12 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/custom.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,44 +21,50 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("NICOLAS ORTIZ - 2184595", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Sistema inventario-NICOLAS ORTIZ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (!User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Acerca de", "Sobre mí", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                         <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Iniciar Sesión", "Login", "Usuario")</li>
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="despegable" href="#">
-                                Menú CRUD Tablas
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Usuario", "Index", "Usuario")               </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Cliente", "Index", "Cliente")               </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Compra", "Index", "Compra")                 </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Proveedor", "Index", "Proveedor")           </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Producto", "Index", "Producto")             </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Roles", "Index", "Roles")                   </a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Usuario Rol", "Index", "UsuarioRol")</a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Producto Compra", "Index", "ProductoCompra")</a>
-                                <br />
-                                <a class="dropdown-item" href="#">@Html.ActionLink("CRUD Producto Imagen", "Index", "ProductoImagen")</a>
-
-                            </div>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú CRUD Tablas <span class="glyphicon glyphicon-eye-open"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">@Html.ActionLink("CRUD Usuario", "Index", "Usuario") </a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Cliente", "Index", "Cliente") </a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Compra", "Index", "Compra")</a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Proveedor", "Index", "Proveedor")</a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Producto", "Index", "Producto")</a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Roles", "Index", "Roles") </a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Usuario Rol", "Index", "UsuarioRol")</a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Producto Compra", "Index", "ProductoCompra")</a></li>
+                                <li><a href="#">@Html.ActionLink("CRUD Producto Imagen", "Index", "ProductoImagen")</a></li>
+                            </ul>
                         </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Subir Archivos <span class="glyphicon glyphicon-eye-open"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">@Html.ActionLink("Subir Proveedor", "uploadCSV2", "Proveedor") </a></li>
+                                <li><a href="#">@Html.ActionLink("Subir Cliente", "uploadCSV", "Cliente") </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="glyphicon glyphicon-eye-open"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">@Html.ActionLink("Reporte Proveedor-Producto", "Reporte", "Producto") </a></li>
+                                <li><a href="#">@Html.ActionLink("Reporte Compra", "ReporteCompra", "Compra") </a></li>
+                            </ul>
+                        </li>
+
                         <li>@Html.ActionLink("Cerrar Sesión", "CloseSession", "Usuario")</li>
                     }
                 </ul>

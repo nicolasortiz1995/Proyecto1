@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Proyecto1.Models;
+using Rotativa;
 
 namespace Proyecto1.Controllers
 {
@@ -106,6 +108,60 @@ namespace Proyecto1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+       
+        public ActionResult uploadCSV2()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult uploadCSV2 (HttpPostedFileBase fileForm)
+        {
+            //String para guardar la ruta.
+            string filePath = string.Empty;
+
+            //Condición para saber si llegó el archivo.
+            if (fileForm != null)
+            {
+                //Rute de la carpeta que guardará el archivo
+                string path = Server.MapPath("~/Uploads/");
+
+                //Condición para saber si la ruta de la carpeta existe.
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                //Obtener el nombre del archivo.
+                filePath = path + Path.GetFileName(fileForm.FileName);
+                //Obtener la extensión del archivo.
+                string extension = Path.GetExtension(fileForm.FileName);
+                //Guardar el archivo.
+                fileForm.SaveAs(filePath);
+
+                string csvData = System.IO.File.ReadAllText(filePath);
+
+                foreach (string row in csvData.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                        var newProveedor = new proveedor
+                        {
+                            nombre = row.Split(',')[0],
+                            direccion = row.Split(',')[1],
+                            telefono = row.Split(',')[2],
+                            nombre_contacto = row.Split(',')[3],
+                        };
+                        using(var db = new inventario2021Entities())
+                        {
+                            db.proveedor.Add(newProveedor);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            return View();
         }
     }
 }

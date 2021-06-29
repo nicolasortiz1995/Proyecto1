@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Proyecto1.Models.Reporte>
+@{
+    ViewBag.Title = "Reporte";
+}
+
+<h2>Reporte</h2>
+<table class="table">
+    <tr>
+        <th>Proveedor</th>
+        <th>Teléfono Proveedor</th>
+        <th>Dirección Proveedor</th>
+        <th>Producto</th>
+        <th>Precio Producto</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nombreProveedor)</td>
+            <td>@Html.DisplayFor(modelItem => item.telefonoProveedor)</td>
+            <td>@Html.DisplayFor(modelItem => item.direccionProveedor)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombreProducto)</td>
+            <td>@Html.DisplayFor(modelItem => item.precioProducto)</td>
+        </tr>
+    }
+</table>
+<img src="https://lostramites.com.co/wp-content/uploads/logo-de-SENA-png-Negro-300x300.png" alt="Alternate Text" />
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Reporte generado por: @HttpContext.Current.User.Identity.Name</p>
+@Html.ActionLink("Generar Reporte.", "ImprimirReporte", "Producto")
+

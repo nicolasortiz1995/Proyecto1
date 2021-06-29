@@ -1,0 +1,47 @@
+﻿/*Aplicando estilos con una etiqueta.*/
+
+body {
+    font-family: 'Prompt', sans-serif;
+}
+
+/*Aplicando estilos por medio de las clases.*/
+.tituloHome{
+
+}
+
+/*Aplicar estilos por medio del id.*/
+.navbar-inverse {
+    background-image: linear-gradient(#8e0000,white, gray);
+}
+
+    .navbar-inverse .navbar-brand {
+        color: black;
+        font-weight: bold;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: black;
+        font-weight: bold;
+    }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #a00000;
+    background-color: darkgray;
+    text-decoration: underline;
+}
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-image: linear-gradient(gray, white);
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #000000;
+    white-space: nowrap;
+    font-weight: bold;
+}

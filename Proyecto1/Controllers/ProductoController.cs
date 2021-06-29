@@ -97,6 +97,8 @@ namespace Proyecto1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit (producto productoEdit)
         {
+            if (!ModelState.IsValid)
+                return View();
             try
             {
                 using (var db = new inventario2021Entities())
@@ -129,5 +131,34 @@ namespace Proyecto1.Controllers
             }
         }
 
+        //Activar Reporte
+        public ActionResult Reporte()
+        {
+            try
+            {
+                var db = new inventario2021Entities();
+                var query = from tabProveedor in db.proveedor
+                            join tabProducto in db.producto on tabProveedor.id equals tabProducto.id_proveedor
+                            select new Reporte
+                            {
+                                nombreProveedor = tabProveedor.nombre,
+                                telefonoProveedor = tabProveedor.telefono,
+                                direccionProveedor = tabProveedor.direccion,
+                                nombreProducto = tabProducto.nombre,
+                                precioProducto = tabProducto.percio_unitario
+                            };
+                return View(query);
+            }catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
+        public ActionResult ImprimirReporte()
+        {
+            var DateAndTime = DateTime.Now;
+            return new ActionAsPdf("Reporte") { FileName = "Reporte Proveedor-Producto_" + DateAndTime + ".pdf" };
+        }
+        }
+
     }
-}

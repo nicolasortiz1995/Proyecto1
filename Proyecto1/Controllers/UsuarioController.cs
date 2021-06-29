@@ -87,6 +87,8 @@ namespace Proyecto1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(usuario usuarioEdit)
         {
+            if (!ModelState.IsValid)
+                return View();
             try
             {
                 using (var db = new inventario2021Entities())

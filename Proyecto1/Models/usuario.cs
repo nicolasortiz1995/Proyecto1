@@ -11,7 +11,8 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,24 @@ namespace Proyecto1.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El nombre no puede ir vacio.")]
+        [StringLength(30, ErrorMessage = "Se superó el límite de caracteres.")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "El apellido no puede ir vacio.")]
+        [StringLength(30, ErrorMessage = "Se superó el límite de caracteres.")]
         public string apellido { get; set; }
+
+        [Required(ErrorMessage = "Ingrese una fecha válida.")]
+        [DataType(DataType.Date)]
         public System.DateTime fecha_nacimiento { get; set; }
+
+        [EmailAddress(ErrorMessage = "El dato ingresado no corresponde a una dirección de correo electrónico.")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "La contraseña no puede ir vacia.")]
+        [DataType (DataType.Password)]
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
