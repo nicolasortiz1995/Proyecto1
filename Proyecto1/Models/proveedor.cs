@@ -11,7 +11,8 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class proveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,14 @@ namespace Proyecto1.Models
         }
     
         public int id { get; set; }
+        [Required(ErrorMessage = "El nombre no puede ir vacio.")]
+        [StringLength(30, ErrorMessage = "Se superó el límite de caracteres.")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "La dirección no puede ir vacia.")]
         public string direccion { get; set; }
+        [Required(ErrorMessage = "El número de teléfono no puede ir vacio.")]
         public string telefono { get; set; }
+        [Required(ErrorMessage = "El número de contacto no puede ir vacio.")]
         public string nombre_contacto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

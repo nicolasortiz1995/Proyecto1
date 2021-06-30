@@ -11,11 +11,14 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class producto_imagen
     {
         public int id { get; set; }
+        [Required(ErrorMessage = "La imagen no puede ir vacia.")]
         public string imagen { get; set; }
+        [Required(ErrorMessage = "Producto no puede ir vacio.")]
         public int id_producto { get; set; }
     
         public virtual producto producto { get; set; }

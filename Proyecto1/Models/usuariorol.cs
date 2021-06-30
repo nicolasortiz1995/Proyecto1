@@ -11,11 +11,14 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuariorol
     {
         public int id { get; set; }
+        [Required(ErrorMessage = "Usuario no puede ir vacio.")]
         public int idUsuario { get; set; }
+        [Required(ErrorMessage = "Rol no puede ir vacio.")]
         public int idRol { get; set; }
     
         public virtual roles roles { get; set; }

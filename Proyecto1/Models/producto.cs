@@ -11,7 +11,8 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,21 @@ namespace Proyecto1.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El nombre no puede ir vacio.")]
+        [StringLength(30, ErrorMessage = "Se superó el límite de caracteres.")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "El precio no puede ir vacio.")]
         public int percio_unitario { get; set; }
+
+        [Required(ErrorMessage = "La descripción no puede ir vacia.")]
         public string descripcion { get; set; }
+
+        [Required(ErrorMessage = "La cantidad no puede ir vacia.")]
         public int cantidad { get; set; }
+
+        [Required(ErrorMessage = "Proveedor no puede ir vacio.")]
         public int id_proveedor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

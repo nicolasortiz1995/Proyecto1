@@ -11,12 +11,16 @@ namespace Proyecto1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class producto_compra
     {
         public int id { get; set; }
+        [Required(ErrorMessage = "Compra no puede ir vacio.")]
         public int id_compra { get; set; }
+        [Required(ErrorMessage = "Producto no puede ir vacio.")]
         public int id_producto { get; set; }
+        [Required(ErrorMessage = "La cantidad no puede ir vacia.")]
         public int cantidad { get; set; }
     
         public virtual compra compra { get; set; }
